@@ -7,7 +7,6 @@ namespace App\Features\Courses\Http\Controllers;
 use App\Features\Courses\Models\Course;
 use App\Features\Courses\Queries\CourseQuery;
 use App\Features\Courses\Transactors\CourseTransactor;
-use App\Features\Users\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +29,7 @@ class CourseController extends Controller
 
 
     public function createCourse(Request $request) {
+        $this->authorize('create', Course::class);
         return $this->courseTransactor->create(Auth::id(), $request->all());
     }
 

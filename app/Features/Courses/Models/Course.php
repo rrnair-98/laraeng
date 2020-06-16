@@ -38,4 +38,8 @@ class Course extends Model
             'deleted_at'    => 'required|date_format:Y-m-d H:i:s',
         ];
     }
+
+    public function isOwner(string $userId) : bool {
+        return $this->created_by === $userId;
+    }
 }
